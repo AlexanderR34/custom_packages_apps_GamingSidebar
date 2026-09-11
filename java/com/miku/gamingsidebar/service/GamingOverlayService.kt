@@ -77,7 +77,7 @@ class GamingOverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner 
                     if (activeGamePackageFlow.value != null && GamingActionsHelper.isTouchShieldEnabled(this@GamingOverlayService)) {
                         GestureLockOverlayManager.applyGestureLock(this@GamingOverlayService)
                         serviceScope.launch {
-                            GamingActionsHelper.applyTouchShieldSettings()
+                            GamingActionsHelper.applyTouchShieldSettings(this@GamingOverlayService)
                         }
                     }
                 }
@@ -578,7 +578,7 @@ class GamingOverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner 
         if (GamingActionsHelper.isTouchShieldEnabled(this)) {
             GestureLockOverlayManager.applyGestureLock(this)
             serviceScope.launch {
-                GamingActionsHelper.applyTouchShieldSettings()
+                GamingActionsHelper.applyTouchShieldSettings(this@GamingOverlayService)
             }
         }
 
