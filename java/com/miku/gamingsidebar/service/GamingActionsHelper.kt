@@ -110,13 +110,9 @@ object GamingActionsHelper {
     suspend fun isDndEnabled(context: Context): Boolean = withContext(Dispatchers.IO) {
         try {
             val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager
-            val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
             val filter = nm?.currentInterruptionFilter ?: NotificationManager.INTERRUPTION_FILTER_ALL
             val zen = Settings.Global.getInt(context.contentResolver, "zen_mode", 0)
-            val isRingerSilent = audioManager?.ringerMode != AudioManager.RINGER_MODE_NORMAL
-
-            (filter != NotificationManager.INTERRUPTION_FILTER_ALL && filter != NotificationManager.INTERRUPTION_FILTER_UNKNOWN) ||
-                    zen != 0 || isRingerSilent
+            (filter != NotificationManager.INTERRUPTION_FILTER_ALL && filter != NotificationManager.INTERRUPTION_FILTER_UNKNOWN) || zen == 1
         } catch (e: Exception) {
             false
         }
@@ -125,38 +121,34 @@ object GamingActionsHelper {
     suspend fun toggleDnd(context: Context): Boolean = withContext(Dispatchers.IO) {
         val currentState = isDndEnabled(context)
         val targetState = !currentState
-        val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
         val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager
 
         try {
-            if (nm != null && nm.isNotificationPolicyAccessGranted) {
+            if (nm != null) {
                 if (targetState) {
+                    // Explicitly allow MEDIA, ALARMS, and SYSTEM sounds so game sound is NEVER silenced or attenuated
+                    val priorityCategories = NotificationManager.Policy.PRIORITY_CATEGORY_MEDIA or
+                            NotificationManager.Policy.PRIORITY_CATEGORY_ALARMS or
+                            NotificationManager.Policy.PRIORITY_CATEGORY_SYSTEM
+
+                    val suppressedVisualEffects = NotificationManager.Policy.SUPPRESSED_EFFECT_PEEK or
+                            NotificationManager.Policy.SUPPRESSED_EFFECT_SCREEN_ON or
+                            NotificationManager.Policy.SUPPRESSED_EFFECT_LIGHTS
+
                     val policy = NotificationManager.Policy(
-                        NotificationManager.Policy.PRIORITY_CATEGORY_MEDIA or
-                                NotificationManager.Policy.PRIORITY_CATEGORY_ALARMS,
-                        0,
-                        0
+                        priorityCategories,
+                        NotificationManager.Policy.PRIORITY_SENDERS_STARRED,
+                        NotificationManager.Policy.PRIORITY_SENDERS_STARRED,
+                        suppressedVisualEffects
                     )
                     nm.notificationPolicy = policy
                     nm.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_PRIORITY)
+                    Settings.Global.putInt(context.contentResolver, "zen_mode", 1)
                 } else {
                     nm.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL)
+                    Settings.Global.putInt(context.contentResolver, "zen_mode", 0)
                 }
             }
-        } catch (_: Exception) {}
-
-        try {
-            if (audioManager != null) {
-                if (targetState) {
-                    audioManager.ringerMode = AudioManager.RINGER_MODE_VIBRATE
-                } else {
-                    audioManager.ringerMode = AudioManager.RINGER_MODE_NORMAL
-                }
-            }
-        } catch (_: Exception) {}
-
-        try {
-            Settings.Global.putInt(context.contentResolver, "zen_mode", if (targetState) 1 else 0)
         } catch (_: Exception) {}
 
         targetState
