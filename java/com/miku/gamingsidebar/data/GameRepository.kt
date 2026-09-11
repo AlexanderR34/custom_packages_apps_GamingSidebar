@@ -612,6 +612,24 @@ class GameRepository(private val context: Context) {
         }
     }
 
+    fun isGame(packageName: String): Boolean {
+        return isGamePackage(context, packageName)
+    }
+
+    fun getAppName(packageName: String): String {
+        return try {
+            val pm = context.packageManager
+            val appInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                pm.getApplicationInfo(packageName, PackageManager.ApplicationInfoFlags.of(0))
+            } else {
+                pm.getApplicationInfo(packageName, 0)
+            }
+            pm.getApplicationLabel(appInfo).toString()
+        } catch (_: Exception) {
+            packageName
+        }
+    }
+
     companion object {
         private val iconBitmapCache = java.util.concurrent.ConcurrentHashMap<String, ImageBitmap>()
         private val iconDrawableCache = java.util.concurrent.ConcurrentHashMap<String, android.graphics.drawable.Drawable>()

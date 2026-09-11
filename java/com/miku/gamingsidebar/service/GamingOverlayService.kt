@@ -114,13 +114,6 @@ class GamingOverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner 
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val targetPkg = intent?.getStringExtra(EXTRA_TARGET_PACKAGE)
-        val cachedUserId = intent?.getStringExtra(EXTRA_CACHED_USER_ID)
-        val cachedUsername = intent?.getStringExtra(EXTRA_CACHED_USERNAME)
-        val cachedAvatarUrl = intent?.getStringExtra(EXTRA_CACHED_AVATAR_URL)
-        if (cachedUserId != null || cachedUsername != null || cachedAvatarUrl != null) {
-            com.miku.gamingsidebar.data.UserSessionCache.saveSession(this, cachedUserId, cachedUsername, cachedAvatarUrl)
-        }
-
         if (!targetPkg.isNullOrEmpty()) {
             setPendingGameLaunch(targetPkg)
         }
@@ -751,9 +744,6 @@ class GamingOverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner 
 
     companion object {
         const val EXTRA_TARGET_PACKAGE = "extra_target_package"
-        const val EXTRA_CACHED_USER_ID = "cached_user_id"
-        const val EXTRA_CACHED_USERNAME = "cached_username"
-        const val EXTRA_CACHED_AVATAR_URL = "cached_avatar_url"
 
         var activeInstance: GamingOverlayService? = null
             private set
@@ -766,17 +756,10 @@ class GamingOverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner 
         }
 
         fun start(context: Context, targetPackage: String? = null) {
-            val cachedUserId = com.miku.gamingsidebar.data.UserSessionCache.getUserId(context)
-            val cachedUsername = com.miku.gamingsidebar.data.UserSessionCache.getUsername(context)
-            val cachedAvatarUrl = com.miku.gamingsidebar.data.UserSessionCache.getAvatarUrl(context)
-
             val intent = Intent(context, GamingOverlayService::class.java).apply {
                 if (targetPackage != null) {
                     putExtra(EXTRA_TARGET_PACKAGE, targetPackage)
                 }
-                if (cachedUserId != null) putExtra(EXTRA_CACHED_USER_ID, cachedUserId)
-                if (cachedUsername != null) putExtra(EXTRA_CACHED_USERNAME, cachedUsername)
-                if (cachedAvatarUrl != null) putExtra(EXTRA_CACHED_AVATAR_URL, cachedAvatarUrl)
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 context.startForegroundService(intent)

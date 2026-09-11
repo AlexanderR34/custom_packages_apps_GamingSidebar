@@ -541,7 +541,7 @@ fun GamingSettingsScreen(
 
     // Modal Dialogs
     if (showAddAppDialog) {
-        com.miku.gamingsidebar.ui.screens.AddCustomAppDialog(
+        com.miku.gamingsidebar.ui.screens.AddCustomAppBottomSheet(
             viewModel = viewModel,
             onDismiss = { showAddAppDialog = false }
         )
