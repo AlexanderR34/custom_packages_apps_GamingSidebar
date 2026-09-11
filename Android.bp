@@ -1,0 +1,52 @@
+// Copyright (C) 2026 The XPerience Project / Miku Hub
+// SPDX-License-Identifier: Apache-2.0
+
+android_app {
+    name: "GamingSidebar",
+    srcs: [
+        "java/**/*.java",
+        "java/**/*.kt",
+        "java/**/*.aidl",
+    ],
+    resource_dirs: ["res"],
+    manifest: "AndroidManifest.xml",
+
+    certificate: "platform",
+    platform_apis: true,
+    system_ext_specific: true,
+    privileged: true,
+
+    defaults: [
+        "SettingsLibDefaults",
+    ],
+
+    static_libs: [
+        "androidx.core_core-ktx",
+        "androidx.appcompat_appcompat",
+        "com.google.android.material_material",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.foundation_foundation",
+        "androidx.compose.material3_material3",
+        "androidx.compose.material_material-icons-core",
+        "androidx.compose.material_material-icons-extended",
+        "androidx.activity_activity-compose",
+        "androidx.lifecycle_lifecycle-viewmodel-compose",
+        "androidx.lifecycle_lifecycle-runtime-ktx",
+        "androidx.savedstate_savedstate",
+    ],
+
+    required: [
+        "privapp-permissions-gamingsidebar.xml",
+    ],
+
+    kotlincflags: ["-Xjvm-default=all"],
+}
+
+prebuilt_etc {
+    name: "privapp-permissions-gamingsidebar.xml",
+    sub_dir: "permissions",
+    src: "privapp-permissions-gamingsidebar.xml",
+    system_ext_specific: true,
+    filename_from_src: true,
+}

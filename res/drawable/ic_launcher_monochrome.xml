@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Left Twintail -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M31,27 C23,24 16,33 14,48 C12,63 15,82 25,87 C27,88 28,84 26,79 C24,71 23,58 28,45 C30,40 32,35 34,31 Z" />
+
+    <!-- Right Twintail -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M77,27 C85,24 92,33 94,48 C96,63 93,82 83,87 C81,88 80,84 82,79 C84,71 85,58 80,45 C78,40 76,35 74,31 Z" />
+
+    <!-- Hair Ribbons -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M27,24 L34,22 L37,33 L30,35 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M81,24 L74,22 L71,33 L78,35 Z" />
+
+    <!-- Headset Band & Earcups -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M30,37 C30,30 40,24 54,24 C68,24 78,30 78,37 L78,40 C78,33 68,27 54,27 C40,27 30,33 30,40 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M27,41 C25,41 24,45 24,52 C24,59 25,63 27,63 C29,63 30,59 30,52 C30,45 29,41 27,41 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M81,41 C79,41 78,45 78,52 C78,59 79,63 81,63 C83,63 84,59 84,52 C84,45 83,41 81,41 Z" />
+    <!-- Headset Mic -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M26,58 C26,63 32,65 38,65 L43,65 C44,65 44,62 43,62 L38,62 C34,62 29,60 29,58 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M42,61 L48,61 C49,61 49,66 48,66 L42,66 Z" />
+
+    <!-- Main Hair & Head Silhouette -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M54,26 C41,26 31,34 31,48 C31,62 41,68 54,68 C67,68 77,62 77,48 C77,34 67,26 54,26 Z" />
+
+    <!-- Hair Bangs Details (Cutouts) -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FF000000"
+        android:strokeWidth="2.2"
+        android:pathData="M34,42 C38,47 43,51 47,54 C48,47 50,38 54,34 C58,38 60,47 61,54 C65,51 70,47 74,42" />
+
+    <!-- Eyes (Cute Chibi Eyes) -->
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M43,46 C41,46 39,49 39,53 C39,57 41,60 43,60 C45,60 47,57 47,53 C47,49 45,46 43,46 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M42,48 C41.5,48 41,49 41,50.5 C41,52 41.5,53 42,53 C42.5,53 43,52 43,50.5 C43,49 42.5,48 42,48 Z" />
+
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M65,46 C63,46 61,49 61,53 C61,57 63,60 65,60 C67,60 69,57 69,53 C69,49 67,46 65,46 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M64,48 C63.5,48 63,49 63,50.5 C63,52 63.5,53 64,53 C64.5,53 65,52 65,50.5 C65,49 64.5,48 64,48 Z" />
+
+    <!-- Smile -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FF000000"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:pathData="M51,61 Q54,63 57,61" />
+
+    <!-- Body / Collar & Tie -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M43,69 L36,73 L33,83 L40,84 L43,76 L48,84 L54,77 L60,84 L65,76 L68,84 L75,83 L72,73 L65,69 Z" />
+
+    <!-- Tie -->
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M52,70 L56,70 L58,82 L54,86 L50,82 Z" />
+</vector>

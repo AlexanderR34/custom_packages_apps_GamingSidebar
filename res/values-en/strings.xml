@@ -1,0 +1,288 @@
+<resources>
+    <string name="app_name">Miku Hub</string>
+    <string name="section_recently_played">RECENTLY PLAYED</string>
+    <string name="section_library">Library</string>
+    <string name="empty_library">No installed games found.</string>
+    <string name="request_usage_permission">To accurately display recently played games, please grant usage access permission.</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="search_games">Search games...</string>
+    <string name="play">Play</string>
+    <string name="btn_add_app">Add</string>
+    <string name="total_games">%1$d Games</string>
+    <string name="nav_resolutions">Resolution</string>
+    <string name="nav_stats">Statistics</string>
+    <string name="nav_leaderboard">Top Ranking</string>
+    <string name="accessibility_service_description">Allows Miku Hub to take instant screenshots and detect when you are inside a game to display the Game Turbo sidebar.</string>
+
+    <!-- Settings Dialog -->
+    <string name="settings_title">App Settings</string>
+    <string name="settings_language">App Language</string>
+    <string name="settings_language_desc">Select between Spanish, English or system default language</string>
+    <string name="settings_lang_system">🌐 System</string>
+    <string name="settings_lang_es">🇪🇸 Español</string>
+    <string name="settings_lang_en">🇺🇸 English</string>
+
+    <string name="settings_game_turbo_sidebar">Game Turbo Sidebar</string>
+    <string name="settings_game_turbo_sidebar_desc">In-game HUD overlay (FPS, Ping, Temp, RAM, Screenshot, WLAN, Record)</string>
+    <string name="settings_game_mode">Gaming Performance Mode</string>
+    <string name="settings_game_mode_desc">Optimize device performance when launching games from Miku Hub</string>
+    <string name="settings_usage_access">Usage Access Permissions</string>
+    <string name="settings_usage_access_desc">Manage app usage statistics in Android system settings</string>
+    <string name="settings_accessibility">Game Turbo Accessibility</string>
+    <string name="settings_accessibility_active">Active: Instant screenshots and game detection enabled</string>
+    <string name="settings_accessibility_inactive">Enables instant non-root screenshots and overlay actions</string>
+    <string name="settings_info_title">Miku Hub v1.0</string>
+    <string name="settings_info_desc">Gaming Hub with Material 3 Expressive and Monet design</string>
+
+    <string name="btn_permission">Permission</string>
+    <string name="btn_test">Test</string>
+    <string name="btn_open">Open</string>
+    <string name="btn_settings">Settings</string>
+    <string name="btn_enable">Enable</string>
+    <string name="btn_close">Close</string>
+    <string name="btn_back">Back</string>
+    <string name="btn_stop">Stop</string>
+    <string name="btn_apply">Apply</string>
+    <string name="btn_reset">Reset</string>
+    <string name="btn_save">Save</string>
+
+    <!-- Sidebar Layout -->
+    <string name="tab_basic">Basic\nFeatures</string>
+    <string name="tab_friends">Online\nFriends</string>
+    <string name="tab_performance">Performance\nModes</string>
+    <string name="tab_anti_interference">Shields &amp;\nBlocks</string>
+    <string name="tab_tools">Game\nTools</string>
+    <string name="user_self">You</string>
+    <string name="in_miku_hub">In Hub</string>
+    <string name="action_hud_pro_active">HUD Pro\nActive</string>
+    <string name="action_hud_mini_active">HUD Mini\nActive</string>
+    <string name="action_hud_transparent">HUD Background\nTransparent</string>
+    <string name="action_hud_solid">HUD Background\nSolid Box</string>
+    <string name="action_hud_touch_through">HUD Touch\nClick-through</string>
+    <string name="action_hud_touchable">HUD Touch\nDraggable</string>
+    <string name="label_usage">USAGE</string>
+    <string name="label_temp">TEMP</string>
+    <string name="music_title">Music</string>
+    <string name="music_swipe_hint">Swipe for Music</string>
+
+    <string name="mode_powersave">Power Save</string>
+    <string name="mode_balanced">Balanced</string>
+    <string name="mode_performance">Performance</string>
+
+    <string name="action_screenshot">Screen\nCapture</string>
+    <string name="action_record">Record\nScreen</string>
+    <string name="action_recording">Recording...</string>
+    <string name="action_wifi_on">Wi-Fi\nOn</string>
+    <string name="action_wifi_off">Wi-Fi\nOff</string>
+    <string name="action_clean_ram">Clean\nRAM</string>
+    <string name="action_cleaning_ram">Freeing...</string>
+    <string name="action_ping_turbo_active">Ping Turbo\n%1$dms</string>
+    <string name="action_ping_turbo_normal">Ping Turbo\nNormal</string>
+    <string name="action_hud_monitor">HUD Monitor</string>
+    <string name="action_hud_visible">HUD Monitor\nVisible</string>
+    <string name="action_hud_hidden">HUD Monitor\nHidden</string>
+    <string name="action_hud_classic_short">HUD Mini</string>
+    <string name="action_hud_advanced_short">HUD Pro</string>
+    <string name="action_hud_mode_classic" formatted="false">Basic HUD (FPS / RAM% / CPU% / GPU%)</string>
+    <string name="action_hud_mode_pro" formatted="false">Pro HUD (FPS / RAM MB / CPU °C / Battery °C / GPU °C)</string>
+    <string name="action_cpu_governor">Governor\nCPU Turbo</string>
+    <string name="action_dnd_on">Do Not Disturb\nOn</string>
+    <string name="action_dnd_off">Do Not Disturb\nOff</string>
+    <string name="action_touch_shield_on">Touch Shield\nLocked</string>
+    <string name="action_touch_shield_off">Touch Shield\nUnlocked</string>
+    <string name="action_afk_on">AFK Mode\nOn</string>
+    <string name="action_afk_off">AFK Mode\nOff</string>
+    <string name="action_crosshair_on">Crosshair\nOn</string>
+    <string name="action_crosshair_off">Crosshair\nOff</string>
+    <string name="action_crosshair_calibrate">Calibrate\nCrosshair</string>
+    <string name="action_bypass_charging_on">Bypass Charge\nActive</string>
+    <string name="action_bypass_charging_off">Bypass Charge\nDisabled</string>
+    <string name="action_timer_active">Timer\nActive</string>
+    <string name="action_timer_tactical">Tactical\nTimer</string>
+    <string name="timer_presets_title">Preset Timers</string>
+
+    <string name="preset_flash">Flash/Nade</string>
+    <string name="preset_ability">Ability</string>
+    <string name="preset_respawn">Respawn</string>
+    <string name="preset_ultimate">Ultimate</string>
+    <string name="preset_buff">Buff/Zone</string>
+    <string name="preset_zone">Zone</string>
+    <string name="preset_boss">Boss</string>
+    <string name="preset_airdrop">Airdrop</string>
+
+    <!-- Resolution Screen -->
+    <string name="res_title">Profiles &amp; Resolution</string>
+    <string name="res_subtitle">Per-game scaling without altering system settings</string>
+    <string name="res_step_select_game">1. SELECT GAME</string>
+    <string name="res_privilege_active">Permission active: %1$s</string>
+    <string name="res_privilege_inactive">Non-Root (Shizuku) or Root Mode</string>
+    <string name="res_privilege_active_desc">Per-game resolution scaling active. Your settings apply directly to the graphics process of %1$s without modifying global system resolution.</string>
+    <string name="res_privilege_inactive_desc">To change game resolution without root, you can use Shizuku (via Wireless Debugging). Also compatible with Root (Magisk/KernelSU/APatch).</string>
+    <string name="res_btn_auth_shizuku">Authorize Shizuku (Non-Root)</string>
+    <string name="res_btn_config_shizuku">Configure Shizuku</string>
+    <string name="res_toast_open_shizuku">Open Shizuku to activate non-root mode</string>
+    <string name="res_step_select_profile">2. SELECT PERFORMANCE PROFILE</string>
+    <string name="res_profile_native">Native (100%)</string>
+    <string name="res_profile_native_desc">Original maximum visual quality</string>
+    <string name="res_profile_balanced">Balanced (70%)</string>
+    <string name="res_profile_balanced_desc">Optimal balance between sharpness and smoothness</string>
+    <string name="res_profile_performance">Performance (50%)</string>
+    <string name="res_profile_performance_desc">Maximum FPS rate and reduced heat</string>
+    <string name="res_profile_saver">Ultra Saver (35%)</string>
+    <string name="res_profile_saver_desc">Minimum thermal and battery usage</string>
+    <string name="res_profile_custom">Custom</string>
+    <string name="res_profile_custom_desc">Manually adjust resolution slider</string>
+    <string name="res_fine_tune_scale">Fine Scale Adjustment</string>
+    <string name="res_fps_limit">FPS Limit (Optional)</string>
+    <string name="res_fps_off">Off</string>
+    <string name="res_btn_reset_100">Reset to 100%</string>
+    <string name="res_btn_apply">Apply</string>
+    <string name="res_btn_apply_play">Apply &amp; Play</string>
+    <string name="res_toast_reset">100% native resolution restored</string>
+    <string name="res_toast_applied">%1$d%% profile applied to %2$s</string>
+
+    <!-- Stats Screen -->
+    <string name="stats_title">Usage Statistics</string>
+    <string name="stats_subtitle">Total gameplay time and game breakdown</string>
+    <string name="stats_today">Today</string>
+    <string name="stats_week">This Week</string>
+    <string name="stats_month">This Month</string>
+    <string name="stats_total_time">TOTAL PLAY TIME</string>
+    <string name="stats_games_count">%1$d games</string>
+    <string name="stats_breakdown">GAME BREAKDOWN</string>
+    <string name="stats_no_records">No game records found for this period</string>
+
+    <!-- Add Custom App Dialog -->
+    <string name="add_app_title">Add Games &amp; Apps</string>
+    <string name="add_app_subtitle">Enable Game Turbo mode on any installed application</string>
+    <string name="add_app_search_placeholder">Search installed app...</string>
+    <string name="add_app_scanning">Scanning installed applications...</string>
+    <string name="add_app_not_found">No applications found</string>
+    <string name="add_app_badge_detected">Game Detected</string>
+    <string name="add_app_badge_added">Added to Turbo</string>
+    <string name="add_app_badge_disabled">Disabled</string>
+    <string name="add_app_clear">Clear</string>
+
+    <!-- Crosshair Dialog -->
+    <string name="crosshair_title">🎯 Virtual Crosshair</string>
+    <string name="crosshair_subtitle">Customize your on-screen reticle</string>
+    <string name="crosshair_style_title">Reticle Style</string>
+    <string name="crosshair_color_title">Color</string>
+    <string name="crosshair_size">Size</string>
+    <string name="crosshair_opacity">Opacity</string>
+    <string name="crosshair_save_done">Save &amp; Done</string>
+    <string name="crosshair_style_dot">Dot</string>
+    <string name="crosshair_style_cross">Classic Cross</string>
+    <string name="crosshair_style_tactical">Tactical</string>
+    <string name="crosshair_style_circle_dot">Circle + Dot</string>
+    <string name="crosshair_style_chevron">Chevron</string>
+
+    <!-- Post Game Summary -->
+    <string name="summary_title">Session Summary</string>
+    <string name="summary_avg_fps">Average FPS</string>
+    <string name="summary_stability">%1$d%% Stability</string>
+    <string name="summary_max_temp">Max Temp</string>
+    <string name="summary_battery">Battery</string>
+    <string name="summary_total_drain">Total drain</string>
+    <!-- Relative Times -->
+    <string name="time_unplayed">Unplayed</string>
+    <string name="time_just_now">Played now</string>
+    <string name="time_mins_ago">%1$d min ago</string>
+    <string name="time_one_hour_ago">1 hour ago</string>
+    <string name="time_hours_ago">%1$d hours ago</string>
+    <string name="time_yesterday">Yesterday</string>
+    <string name="time_days_ago">%1$d days ago</string>
+
+    <!-- Game Turbo Console UI -->
+    <string name="game_turbo_play">Play</string>
+    <string name="game_turbo_auto_desc">Game Turbo can turn on automatically</string>
+    <string name="game_turbo_gpu_settings">GPU Settings</string>
+    <string name="game_turbo_framerate">Frame rate</string>
+    <string name="game_turbo_resolution">Resolution</string>
+    <string name="game_turbo_cpu_gov">CPU Turbo Governor</string>
+    <string name="game_turbo_preset_default">Default</string>
+    <string name="game_turbo_preset_powersave">Power save</string>
+    <string name="game_turbo_preset_balanced">Balanced</string>
+    <string name="game_turbo_preset_high_quality">High quality</string>
+    <string name="game_turbo_preset_custom">Custom</string>
+    <string name="game_turbo_empty_title">No games yet</string>
+    <string name="game_turbo_empty_desc">Tap the + button at the top to add your installed games</string>
+
+    <!-- Ranking & TopBar -->
+    <string name="ranking_title">Playtime Ranking</string>
+    <string name="tab_today">Today (24h)</string>
+    <string name="tab_7days">7 Days</string>
+    <string name="tab_30days">30 Days</string>
+    <string name="total_played">Total Played</string>
+    <string name="badge_admin">ADMIN</string>
+
+    <!-- Conteo de jugadores y tiempo -->
+    <string name="player_single">1 player</string>
+    <string name="players_multiple">%d players</string>
+    <string name="time_hours_minutes">%1$dh %2$02dm</string>
+    <string name="time_minutes_only">%d min</string>
+
+    <!-- Auth & Perfil -->
+    <string name="not_logged_in">Not signed in</string>
+    <string name="login_sync_prompt">Sign in to sync your stats</string>
+    <string name="btn_login">Sign In</string>
+    <string name="auth_title">Supabase Account</string>
+    <string name="tab_signin">Sign In</string>
+    <string name="tab_signup">Sign Up</string>
+    <string name="email_label">Email Address</string>
+    <string name="password_label">Password</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_register">Register</string>
+    <string name="edit_profile_title">Edit Profile</string>
+    <string name="edit_username_title">Edit Username</string>
+    <string name="choose_avatar">Choose Avatar</string>
+    <string name="upload_custom_photo">Upload Custom Photo</string>
+    <string name="username_label">Username</string>
+    <string name="btn_logout">Sign Out</string>
+    <string name="admin_badge_title">ADMIN MIKU</string>
+    <string name="ranking_empty_title">No records yet</string>
+    <string name="ranking_empty_desc">Play any game to appear on the leaderboard!</string>
+    <string name="error_supabase">Error connecting to Supabase. Check your connection.</string>
+
+    <!-- Onboarding / Permissions Setup -->
+
+    <!-- Onboarding / Permissions Setup -->
+    <string name="setup_title">Initial Setup</string>
+    <string name="setup_subtitle">Grant the required permissions to unlock all gaming tools and Game Turbo features.</string>
+    <string name="setup_section_mandatory">Mandatory Permissions</string>
+    <string name="setup_section_optional">Optional &amp; Advanced Permissions</string>
+    <string name="setup_btn_grant">Grant</string>
+    <string name="setup_btn_granted">✓ Granted</string>
+    <string name="setup_btn_verify">Verify</string>
+    <string name="setup_btn_continue">Get Started / Enter</string>
+
+    <string name="perm_overlay_title">Display over other apps</string>
+    <string name="perm_overlay_desc">Allows showing the floating performance HUD and tactical sidebar during games.</string>
+
+    <string name="perm_usage_title">Usage Access</string>
+    <string name="perm_usage_desc">Automatically detects foreground games and counts your gameplay hours.</string>
+
+    <string name="perm_notif_title">Foreground Notifications</string>
+    <string name="perm_notif_desc">Keeps monitoring and overlay service active without system interruptions.</string>
+
+    <string name="perm_root_title">Root / KernelSU Access</string>
+    <string name="perm_root_desc">Unlocks CPU Turbo Governor, thermal bypass and precise GPU frequency monitoring.</string>
+    <string name="perm_root_detected">✓ Root Access Detected</string>
+    <string name="perm_root_not_detected">Optional / Not detected</string>
+
+    <string name="perm_battery_title">Ignore Battery Optimization</string>
+    <string name="perm_battery_desc">Prevents Android from killing or suspending the background monitoring service while playing.</string>
+
+    <!-- Admin Moderation & Game Time Adjustment -->
+    <string name="admin_adjust_time_title">Adjust Game Time</string>
+    <string name="admin_quick_add">Add time</string>
+    <string name="admin_quick_subtract">Subtract time</string>
+    <string name="admin_reset_zero">Reset to 0 min</string>
+    <string name="admin_exact_minutes_label">Exact minutes</string>
+    <string name="admin_save_time_success">Game time updated successfully</string>
+    <string name="admin_delete_time_title">Delete suspicious hours?</string>
+    <string name="admin_delete_time_message">Do you want to delete the playtime of %1$s in %2$s due to suspicious hours? This will reset their time to 0.</string>
+    <string name="admin_delete_time_success">Hours deleted successfully</string>
+    <string name="game_top10_title">Top 10 Players</string>
+    <string name="game_top10_empty">No players recorded in this game yet.</string>
+</resources>

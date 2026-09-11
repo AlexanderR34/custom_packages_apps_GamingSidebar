@@ -1,0 +1,205 @@
+<resources>
+    <string name="app_name">Miku Hub</string>
+    <string name="section_recently_played">JUGADOS RECIENTEMENTE</string>
+    <string name="section_library">Biblioteca</string>
+    <string name="empty_library">No se encontraron juegos instalados.</string>
+    <string name="request_usage_permission">Para mostrar los juegos recientes con precisión, concede el permiso de acceso a datos de uso.</string>
+    <string name="grant_permission">Conceder Permiso</string>
+    <string name="search_games">Buscar juegos...</string>
+    <string name="play">Jugar</string>
+    <string name="btn_add_app">Agregar</string>
+    <string name="total_games">%1$d Juegos</string>
+    <string name="nav_resolutions">Resolución</string>
+    <string name="nav_stats">Estadísticas</string>
+    <string name="accessibility_service_description">Permite a Miku Hub realizar capturas instantáneas y detectar cuándo estás dentro de un juego para mostrar la barra lateral Game Turbo.</string>
+
+    <!-- Settings Dialog -->
+    <string name="settings_title">Ajustes de la App</string>
+    <string name="settings_language">Idioma de la App</string>
+    <string name="settings_language_desc">Selecciona entre Español, Inglés o el idioma del sistema</string>
+    <string name="settings_lang_system">🌐 Sistema</string>
+    <string name="settings_lang_es">🇪🇸 Español</string>
+    <string name="settings_lang_en">🇺🇸 English</string>
+
+    <string name="settings_game_turbo_sidebar">Barra Lateral Game Turbo</string>
+    <string name="settings_game_turbo_sidebar_desc">Overlay flotante en juegos (FPS, Ping, Temp, RAM, Captura, WLAN, Grabar)</string>
+    <string name="settings_game_mode">Modo Rendimiento de Juegos</string>
+    <string name="settings_game_mode_desc">Optimiza el rendimiento del dispositivo al abrir juegos desde Miku Hub</string>
+    <string name="settings_usage_access">Acceso a Estadísticas de Uso</string>
+    <string name="settings_usage_access_desc">Administra el permiso de estadísticas de uso en los ajustes de Android</string>
+    <string name="settings_accessibility">Accesibilidad Game Turbo</string>
+    <string name="settings_accessibility_active">Activo: Capturas instantáneas y detección de juegos habilitadas</string>
+    <string name="settings_accessibility_inactive">Habilita capturas sin root y acciones en el overlay flotante</string>
+    <string name="settings_info_title">Miku Hub v1.0</string>
+    <string name="settings_info_desc">Gaming Hub con diseño Material 3 Expressive y Monet</string>
+
+    <string name="btn_permission">Permiso</string>
+    <string name="btn_test">Probar</string>
+    <string name="btn_open">Abrir</string>
+    <string name="btn_settings">Ajustes</string>
+    <string name="btn_enable">Activar</string>
+    <string name="btn_close">Cerrar</string>
+    <string name="btn_back">Volver</string>
+    <string name="btn_stop">Detener</string>
+    <string name="btn_apply">Aplicar</string>
+    <string name="btn_reset">Restablecer</string>
+    <string name="btn_save">Guardar</string>
+
+    <!-- Sidebar Layout -->
+    <string name="tab_basic">Funciones\nBásicas</string>
+    <string name="tab_performance">Modos de\nRendimiento</string>
+    <string name="tab_anti_interference">Escudos y\nBloqueos</string>
+    <string name="tab_tools">Herramientas\nde Juego</string>
+
+    <string name="mode_powersave">Ahorro</string>
+    <string name="mode_balanced">Equilibrado</string>
+    <string name="mode_performance">Rendimiento</string>
+
+    <string name="action_screenshot">Captura de\nPantalla</string>
+    <string name="action_record">Grabar\nPantalla</string>
+    <string name="action_recording">Grabando...</string>
+    <string name="action_wifi_on">Wi-Fi\nEncendido</string>
+    <string name="action_wifi_off">Wi-Fi\nApagado</string>
+    <string name="action_clean_ram">Limpiar\nRAM</string>
+    <string name="action_cleaning_ram">Liberando...</string>
+    <string name="action_ping_turbo_active">Ping Turbo\n%1$dms</string>
+    <string name="action_ping_turbo_normal">Ping Turbo\nNormal</string>
+    <string name="action_hud_monitor">Monitor HUD</string>
+    <string name="action_hud_visible">Monitor HUD\nVisible</string>
+    <string name="action_hud_hidden">Monitor HUD\nOculto</string>
+    <string name="action_cpu_governor">Governor\nCPU Turbo</string>
+    <string name="action_dnd_on">No Molestar\nActivo</string>
+    <string name="action_dnd_off">No Molestar\nInactivo</string>
+    <string name="action_touch_shield_on">Bloqueo Táctil\nActivo</string>
+    <string name="action_touch_shield_off">Bloqueo Táctil\nInactivo</string>
+    <string name="action_afk_on">Modo AFK\nActivo</string>
+    <string name="action_afk_off">Modo AFK\nInactivo</string>
+    <string name="action_crosshair_on">Mira\nActiva</string>
+    <string name="action_crosshair_off">Mira\nInactiva</string>
+    <string name="action_crosshair_calibrate">Calibrar\nMira</string>
+    <string name="action_timer_active">Temporizador\nActivo</string>
+    <string name="action_timer_tactical">Temporizador\nTáctico</string>
+    <string name="timer_presets_title">Temporizadores Predefinidos</string>
+
+    <string name="preset_flash">Flash/Granada</string>
+    <string name="preset_ability">Habilidad</string>
+    <string name="preset_respawn">Reaparición</string>
+    <string name="preset_ultimate">Definitiva</string>
+    <string name="preset_buff">Buff/Zona</string>
+    <string name="preset_zone">Zona</string>
+    <string name="preset_boss">Jefe</string>
+    <string name="preset_airdrop">Airdrop</string>
+
+    <!-- Resolution Screen -->
+    <string name="res_title">Perfiles y Resolución</string>
+    <string name="res_subtitle">Escalado por juego sin alterar el sistema</string>
+    <string name="res_step_select_game">1. SELECCIONA EL JUEGO</string>
+    <string name="res_privilege_active">Permiso activo: %1$s</string>
+    <string name="res_privilege_inactive">Modo Sin Root (Shizuku) o Root</string>
+    <string name="res_privilege_active_desc">Escalado de resolución activo por juego. Tus ajustes se aplican directamente al proceso gráfico de %1$s sin modificar la resolución general del sistema.</string>
+    <string name="res_privilege_inactive_desc">Para cambiar la resolución de los juegos sin root, puedes usar Shizuku (vía Depuración por Wi-Fi). También es compatible con Root (Magisk/KernelSU/APatch).</string>
+    <string name="res_btn_auth_shizuku">Autorizar Shizuku (Sin Root)</string>
+    <string name="res_btn_config_shizuku">Configurar Shizuku</string>
+    <string name="res_toast_open_shizuku">Abre Shizuku para activar sin root</string>
+    <string name="res_step_select_profile">2. SELECCIONA EL PERFIL DE RENDIMIENTO</string>
+    <string name="res_profile_native">Nativo (100%)</string>
+    <string name="res_profile_native_desc">Máxima calidad gráfica original</string>
+    <string name="res_profile_balanced">Equilibrado (70%)</string>
+    <string name="res_profile_balanced_desc">Balance óptimo entre nitidez y fluidez</string>
+    <string name="res_profile_performance">Rendimiento (50%)</string>
+    <string name="res_profile_performance_desc">Máxima tasa de FPS y menos calor</string>
+    <string name="res_profile_saver">Ultra Ahorro (35%)</string>
+    <string name="res_profile_saver_desc">Mínimo consumo térmico y batería</string>
+    <string name="res_profile_custom">Personalizado</string>
+    <string name="res_profile_custom_desc">Ajusta la barra de resolución manualmente</string>
+    <string name="res_fine_tune_scale">Ajuste Fino de Escala</string>
+    <string name="res_fps_limit">Límite FPS (Opcional)</string>
+    <string name="res_fps_off">Off</string>
+    <string name="res_btn_reset_100">Restablecer a 100%</string>
+    <string name="res_btn_apply">Aplicar</string>
+    <string name="res_btn_apply_play">Aplicar y Jugar</string>
+    <string name="res_toast_reset">Resolución 100% nativa restablecida</string>
+    <string name="res_toast_applied">Perfil del %1$d%% aplicado a %2$s</string>
+
+    <!-- Stats Screen -->
+    <string name="stats_title">Estadísticas de Uso</string>
+    <string name="stats_subtitle">Tiempo total y desglose por juego</string>
+    <string name="stats_today">Hoy</string>
+    <string name="stats_week">Esta Semana</string>
+    <string name="stats_month">Este Mes</string>
+    <string name="stats_total_time">TIEMPO TOTAL JUGADO</string>
+    <string name="stats_games_count">%1$d juegos</string>
+    <string name="stats_breakdown">DESGLOSE POR JUEGO</string>
+    <string name="stats_no_records">No hay registros de juego para este periodo</string>
+
+    <!-- Add Custom App Dialog -->
+    <string name="add_app_title">Agregar Juegos y Apps</string>
+    <string name="add_app_subtitle">Activa el modo Game Turbo en cualquier aplicación</string>
+    <string name="add_app_search_placeholder">Buscar app instalada...</string>
+    <string name="add_app_scanning">Escaneando aplicaciones instaladas...</string>
+    <string name="add_app_not_found">No se encontraron aplicaciones</string>
+    <string name="add_app_badge_detected">Juego detectado</string>
+    <string name="add_app_badge_added">Agregado a Turbo</string>
+    <string name="add_app_badge_disabled">Desactivado</string>
+    <string name="add_app_clear">Limpiar</string>
+
+    <!-- Crosshair Dialog -->
+    <string name="crosshair_title">🎯 Mira Virtual</string>
+    <string name="crosshair_subtitle">Personaliza tu retícula en pantalla</string>
+    <string name="crosshair_style_title">Estilo de Retícula</string>
+    <string name="crosshair_color_title">Color</string>
+    <string name="crosshair_size">Tamaño</string>
+    <string name="crosshair_opacity">Opacidad</string>
+    <string name="crosshair_save_done">Guardar y Listo</string>
+    <string name="crosshair_style_dot">Punto</string>
+    <string name="crosshair_style_cross">Cruz Clásica</string>
+    <string name="crosshair_style_tactical">Táctica</string>
+    <string name="crosshair_style_circle_dot">Círculo + Punto</string>
+    <string name="crosshair_style_chevron">Chevron</string>
+
+    <!-- Post Game Summary -->
+    <string name="summary_title">Resumen de Sesión</string>
+    <string name="summary_avg_fps">FPS Promedio</string>
+    <string name="summary_stability">%1$d%% Estabilidad</string>
+    <string name="summary_max_temp">Temp Máx</string>
+    <string name="summary_battery">Batería</string>
+    <string name="summary_total_drain">Consumo total</string>
+    <!-- Relative Times -->
+    <string name="time_unplayed">Sin jugar</string>
+    <string name="time_just_now">Jugado ahora</string>
+    <string name="time_mins_ago">Hace %1$d min</string>
+    <string name="time_one_hour_ago">Hace 1 hora</string>
+    <string name="time_hours_ago">Hace %1$d horas</string>
+    <string name="time_yesterday">Ayer</string>
+    <string name="time_days_ago">Hace %1$d días</string>
+
+    <!-- Game Turbo Console UI -->
+    <string name="game_turbo_play">Jugar</string>
+    <string name="game_turbo_auto_desc">Game Turbo se activa automáticamente</string>
+    <string name="game_turbo_gpu_settings">Ajustes de GPU</string>
+    <string name="game_turbo_framerate">Tasa de fotogramas</string>
+    <string name="game_turbo_resolution">Resolución</string>
+    <string name="game_turbo_cpu_gov">Governor CPU Turbo</string>
+    <string name="game_turbo_preset_default">Predeterminado</string>
+    <string name="game_turbo_preset_powersave">Ahorrar energía</string>
+    <string name="game_turbo_preset_balanced">Balanceado</string>
+    <string name="game_turbo_preset_high_quality">Alta calidad</string>
+    <string name="game_turbo_preset_custom">Personalizar</string>
+    <string name="game_turbo_empty_title">Sin juegos aún</string>
+    <string name="game_turbo_empty_desc">Toca el botón + arriba para agregar tus juegos instalados</string>
+    <string name="action_hud_transparent">Fondo HUD\nTransparente</string>
+    <string name="action_hud_solid">Fondo HUD\nCon caja gris</string>
+    <string name="action_hud_touch_through">HUD Táctil\nNo tocable</string>
+    <string name="action_hud_touchable">HUD Táctil\nArrastrable</string>
+    <string name="admin_adjust_time_title">Ajustar Tiempo de Juego</string>
+    <string name="admin_quick_add">Sumar tiempo</string>
+    <string name="admin_quick_subtract">Restar tiempo</string>
+    <string name="admin_reset_zero">Resetear a 0 min</string>
+    <string name="admin_exact_minutes_label">Minutos exactos</string>
+    <string name="admin_save_time_success">Tiempo de juego actualizado con éxito</string>
+    <string name="admin_delete_time_title">¿Eliminar tiempo sospechoso?</string>
+    <string name="admin_delete_time_message">¿Deseas eliminar las horas de %1$s en %2$s por horas sospechosas? Esta acción restablecerá su tiempo a 0.</string>
+    <string name="admin_delete_time_success">Horas eliminadas con éxito</string>
+    <string name="game_top10_title">Top 10 Jugadores</string>
+    <string name="game_top10_empty">No hay jugadores registrados en este juego aún.</string>
+</resources>
