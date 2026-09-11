@@ -2,7 +2,6 @@ package com.miku.gamingsidebar.service
 
 import android.content.Context
 import android.provider.Settings
-import com.miku.gamingsidebar.data.RootHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -52,30 +51,20 @@ object BrightnessHelper {
         pendingJob = scope.launch {
             delay(40)
             try {
-                if (Settings.System.canWrite(context)) {
-                    try {
-                        Settings.System.putInt(
-                            context.contentResolver,
-                            Settings.System.SCREEN_BRIGHTNESS_MODE,
-                            Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL
-                        )
-                    } catch (_: Exception) {}
-
+                try {
                     Settings.System.putInt(
                         context.contentResolver,
-                        Settings.System.SCREEN_BRIGHTNESS,
-                        systemBrightness
+                        Settings.System.SCREEN_BRIGHTNESS_MODE,
+                        Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL
                     )
-                } else {
-                    RootHelper.executeSingleCommand(
-                        "settings put system screen_brightness_mode 0; settings put system screen_brightness $systemBrightness; settings put system screen_brightness_float $gammaFloat"
-                    )
-                }
-            } catch (e: Exception) {
-                RootHelper.executeSingleCommand(
-                    "settings put system screen_brightness_mode 0; settings put system screen_brightness $systemBrightness; settings put system screen_brightness_float $gammaFloat"
+                } catch (_: Exception) {}
+
+                Settings.System.putInt(
+                    context.contentResolver,
+                    Settings.System.SCREEN_BRIGHTNESS,
+                    systemBrightness
                 )
-            }
+            } catch (_: Exception) {}
         }
     }
 }

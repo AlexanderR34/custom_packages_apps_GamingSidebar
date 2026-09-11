@@ -308,15 +308,6 @@ class PerformanceMonitor(private val context: Context) {
 
     private fun executePrivilegedOrLocal(cmd: String): String? {
         return try {
-            if (com.miku.gamingsidebar.data.RootHelper.isRootAvailable()) {
-                val process = Runtime.getRuntime().exec(arrayOf("su", "-c", cmd))
-                val reader = BufferedReader(InputStreamReader(process.inputStream))
-                val out = reader.readText()
-                reader.close()
-                process.destroy()
-                if (out.isNotBlank()) return out
-            }
-
             val process = Runtime.getRuntime().exec(arrayOf("sh", "-c", cmd))
             val reader = BufferedReader(InputStreamReader(process.inputStream))
             val out = reader.readText()

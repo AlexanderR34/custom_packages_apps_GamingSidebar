@@ -14,9 +14,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.TextView
-import android.widget.Toast
-import com.miku.gamingsidebar.data.RootHelper
-import kotlinx.coroutines.CoroutineScope
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -73,14 +71,6 @@ object AfkOverlayHelper {
             // Ignored
         }
 
-        if (RootHelper.isRootAvailable()) {
-            RootHelper.executeSingleCommand(
-                "settings put system afk_mode_active 1; " +
-                "settings put system peak_refresh_rate 30; " +
-                "settings put system min_refresh_rate 30; " +
-                "cmd power set-mode 1"
-            )
-        }
 
         val wm = context.getSystemService(Context.WINDOW_SERVICE) as? WindowManager ?: return
         windowManager = wm
@@ -218,14 +208,6 @@ object AfkOverlayHelper {
             // Ignored
         }
 
-        if (RootHelper.isRootAvailable()) {
-            RootHelper.executeSingleCommand(
-                "settings put system afk_mode_active 0; " +
-                "settings put system peak_refresh_rate ${if (originalRefreshRate > 30) originalRefreshRate else 120}; " +
-                "settings put system min_refresh_rate ${if (originalRefreshRate > 30) originalRefreshRate else 120}; " +
-                "cmd power set-mode 0"
-            )
-        }
 
         val v = afkView
         if (v != null) {

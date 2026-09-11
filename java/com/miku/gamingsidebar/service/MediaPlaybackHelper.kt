@@ -20,7 +20,10 @@ import android.net.Uri
 import android.os.Build
 import android.os.SystemClock
 import android.provider.MediaStore
+import android.provider.Settings
 import android.view.KeyEvent
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -103,16 +106,14 @@ object MediaPlaybackHelper {
     }
 
     fun ensureNotificationPermissions(context: Context) {
-        if (!com.miku.gamingsidebar.data.RootHelper.isRootAvailable()) return
-        val pkg = context.packageName
-        val service = "$pkg/$pkg.service.MikuNotificationListenerService"
-        val cmd = "pm grant $pkg android.permission.WRITE_SECURE_SETTINGS 2>/dev/null; " +
-                "appops set $pkg ACCESS_RESTRICTED_SETTINGS allow 2>/dev/null; " +
-                "cmd appops set $pkg BIND_NOTIFICATION_LISTENER_SERVICE allow 2>/dev/null; " +
-                "cmd notification allow_listener $service 2>/dev/null; " +
-                "enabled=\$(settings get secure enabled_notification_listeners); if [[ \"\$enabled\" != *\"$pkg\"* ]]; then settings put secure enabled_notification_listeners \"\$enabled:$service\"; fi"
-        com.miku.gamingsidebar.data.RootHelper.executeSingleCommand(cmd)
         try {
+            val pkg = context.packageName
+            val service = "$pkg/$pkg.service.MikuNotificationListenerService"
+            val enabled = Settings.Secure.getString(context.contentResolver, Settings.Secure.ENABLED_NOTIFICATION_LISTENERS) ?: ""
+            if (!enabled.contains(pkg)) {
+                val newEnabled = if (enabled.isBlank()) service else "$enabled:$service"
+                Settings.Secure.putString(context.contentResolver, Settings.Secure.ENABLED_NOTIFICATION_LISTENERS, newEnabled)
+            }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 val componentName = ComponentName(context, MikuNotificationListenerService::class.java)
                 android.service.notification.NotificationListenerService.requestRebind(componentName)
@@ -121,9 +122,12 @@ object MediaPlaybackHelper {
     }
 
     private fun syncFromDumpsys(context: Context) {
-        if (!com.miku.gamingsidebar.data.RootHelper.isRootAvailable()) return
         try {
-            val output = com.miku.gamingsidebar.data.RootHelper.executeCommandWithOutput("dumpsys media_session")
+            val process = Runtime.getRuntime().exec(arrayOf("sh", "-c", "dumpsys media_session"))
+            val reader = BufferedReader(InputStreamReader(process.inputStream))
+            val output = reader.readText()
+            reader.close()
+            process.destroy()
             if (output.isBlank()) return
 
             var currentPkg = ""

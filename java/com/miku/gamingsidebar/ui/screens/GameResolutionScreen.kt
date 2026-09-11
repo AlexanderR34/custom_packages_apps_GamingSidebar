@@ -252,32 +252,28 @@ fun GameResolutionScreen(
                 }
             }
 
-            // 2. Privilege Status & Non-Root / Root Banner
+            // 2. Native System Integration Banner
             item {
-                val isPrivileged = com.miku.gamingsidebar.data.RootHelper.isPrivilegeAvailable()
-                val privilegeType = com.miku.gamingsidebar.data.RootHelper.getPrivilegeType()
-                val isShizukuRunning = com.miku.gamingsidebar.data.RootHelper.isShizukuInstalledAndRunning()
-
                 Surface(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(20.dp),
-                    color = if (isPrivileged) MaterialTheme.colorScheme.surfaceContainerHigh else MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.25f),
+                    color = MaterialTheme.colorScheme.surfaceContainerHigh,
                     border = androidx.compose.foundation.BorderStroke(
                         1.dp,
-                        if (isPrivileged) MaterialTheme.colorScheme.primary.copy(alpha = 0.4f) else MaterialTheme.colorScheme.primary.copy(alpha = 0.6f)
+                        MaterialTheme.colorScheme.primary.copy(alpha = 0.35f)
                     )
                 ) {
                     Column(modifier = Modifier.padding(14.dp)) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(
-                                imageVector = if (isPrivileged) Icons.Rounded.Check else Icons.Rounded.Info,
+                                imageVector = Icons.Rounded.Check,
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.size(20.dp)
                             )
                             Spacer(modifier = Modifier.width(10.dp))
                             Text(
-                                text = if (isPrivileged) stringResource(R.string.res_privilege_active, privilegeType) else stringResource(R.string.res_privilege_inactive),
+                                text = "Integración Nativa del Sistema (AOSP)",
                                 style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
                                 color = MaterialTheme.colorScheme.onSurface
                             )
@@ -286,57 +282,10 @@ fun GameResolutionScreen(
                         Spacer(modifier = Modifier.height(6.dp))
 
                         Text(
-                            text = if (isPrivileged) {
-                                stringResource(R.string.res_privilege_active_desc, selectedGame?.name ?: "")
-                            } else {
-                                stringResource(R.string.res_privilege_inactive_desc)
-                            },
+                            text = "El escalado de resolución opera directamente a nivel de GameManager del sistema operativo para ${selectedGame?.name ?: "este juego"}.",
                             style = MaterialTheme.typography.bodySmall.copy(fontSize = 12.sp, lineHeight = 17.sp),
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
-
-                        if (!isPrivileged) {
-                            Spacer(modifier = Modifier.height(10.dp))
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.End
-                            ) {
-                                if (isShizukuRunning) {
-                                    Button(
-                                        onClick = {
-                                            com.miku.gamingsidebar.data.RootHelper.requestShizukuPermission()
-                                        },
-                                        colors = ButtonDefaults.buttonColors(
-                                            containerColor = MaterialTheme.colorScheme.primary,
-                                            contentColor = MaterialTheme.colorScheme.onPrimary
-                                        ),
-                                        shape = RoundedCornerShape(12.dp)
-                                    ) {
-                                        Text(stringResource(R.string.res_btn_auth_shizuku), style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold))
-                                    }
-                                } else {
-                                    OutlinedButton(
-                                        onClick = {
-                                            try {
-                                                val intent = context.packageManager.getLaunchIntentForPackage("moe.shizuku.privileged.api")
-                                                if (intent != null) {
-                                                    context.startActivity(intent)
-                                                } else {
-                                                    val webIntent = android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse("https://shizuku.rikka.app/download/"))
-                                                    webIntent.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
-                                                    context.startActivity(webIntent)
-                                                }
-                                            } catch (e: Exception) {
-                                                Toast.makeText(context, context.getString(R.string.res_toast_open_shizuku), Toast.LENGTH_SHORT).show()
-                                            }
-                                        },
-                                        shape = RoundedCornerShape(12.dp)
-                                    ) {
-                                        Text(stringResource(R.string.res_btn_config_shizuku), style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold))
-                                    }
-                                }
-                            }
-                        }
                     }
                 }
             }
