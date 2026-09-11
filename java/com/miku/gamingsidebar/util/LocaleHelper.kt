@@ -35,7 +35,7 @@ object LocaleHelper {
                 Locale.getDefault()
             }
         } else {
-            Locale(targetLang)
+            Locale.forLanguageTag(targetLang)
         }
 
         Locale.setDefault(locale)
@@ -57,7 +57,7 @@ object LocaleHelper {
         val targetLang = getSavedLanguage(context)
         if (targetLang == LANG_SYSTEM) return context
 
-        val locale = Locale(targetLang)
+        val locale = Locale.forLanguageTag(targetLang)
         Locale.setDefault(locale)
         val config = Configuration(context.resources.configuration)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

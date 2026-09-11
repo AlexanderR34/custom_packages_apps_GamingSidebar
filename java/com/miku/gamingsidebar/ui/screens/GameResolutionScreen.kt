@@ -146,6 +146,7 @@ fun GameResolutionScreen(
                 shape = RoundedCornerShape(14.dp),
                 modifier = Modifier.size(44.dp)
             ) {
+                @Suppress("DEPRECATION")
                 Icon(
                     imageVector = Icons.Rounded.ArrowBack,
                     contentDescription = stringResource(R.string.btn_back),
