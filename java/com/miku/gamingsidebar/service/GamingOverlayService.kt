@@ -68,12 +68,14 @@ class GamingOverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner 
         override fun onReceive(context: Context?, intent: Intent?) {
             when (intent?.action) {
                 Intent.ACTION_SCREEN_OFF -> {
+                    performanceMonitor?.setScreenState(false)
                     GestureLockOverlayManager.removeGestureLock(this@GamingOverlayService)
                     serviceScope.launch {
                         GamingActionsHelper.restoreTouchShield(this@GamingOverlayService)
                     }
                 }
                 Intent.ACTION_USER_PRESENT, Intent.ACTION_SCREEN_ON -> {
+                    performanceMonitor?.setScreenState(true)
                     if (activeGamePackageFlow.value != null && GamingActionsHelper.isTouchShieldEnabled(this@GamingOverlayService)) {
                         GestureLockOverlayManager.applyGestureLock(this@GamingOverlayService)
                         serviceScope.launch {
@@ -91,7 +93,7 @@ class GamingOverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner 
         savedStateRegistryController.performRestore(null)
         lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
 
-        startForegroundNotification()
+        // System priv-app running with android.uid.system does not require ongoing notifications
         performanceMonitor = PerformanceMonitor(this).apply { startMonitoring() }
         setupOverlayWindow()
         loadGamePackagesAndStartMonitoring()
@@ -142,27 +144,6 @@ class GamingOverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner 
         }
     }
 
-    private fun startForegroundNotification() {
-        val channelId = "miku_gaming_hub_sidebar"
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                channelId,
-                "Miku Hub Sidebar Turbo",
-                NotificationManager.IMPORTANCE_LOW
-            )
-            val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            nm.createNotificationChannel(channel)
-        }
-
-        val notification: Notification = NotificationCompat.Builder(this, channelId)
-            .setContentTitle("Miku Hub Game Turbo")
-            .setContentText("Barra lateral activa en juegos")
-            .setSmallIcon(R.mipmap.ic_launcher)
-            .setOngoing(true)
-            .build()
-
-        startForeground(1001, notification)
-    }
 
     private var isSnappedToRight = false
     private var handleYRatio = 0.45f

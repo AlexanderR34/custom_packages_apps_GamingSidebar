@@ -350,9 +350,9 @@ fun GamingSidebarLayout(
                         .background(
                             Brush.verticalGradient(
                                 listOf(
-                                    primary.copy(alpha = 0.95f),
-                                    secondary.copy(alpha = 0.80f),
-                                    primary.copy(alpha = 0.95f)
+                                    Color(0xFF76FF03).copy(alpha = 0.95f),
+                                    Color(0xFF00E676).copy(alpha = 0.85f),
+                                    Color(0xFF76FF03).copy(alpha = 0.95f)
                                 )
                             )
                         )

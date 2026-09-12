@@ -60,21 +60,14 @@ class GameTrackerService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.d(TAG, "GameTrackerService creado. Iniciando Foreground...")
-        createNotificationChannel()
-        startForegroundWithNotification("Monitoreando tiempo de juego...")
+        Log.d(TAG, "GameTrackerService creado.")
 
         // Iniciar rastreo de UsageStatsManager
         AutomaticGameTracker.startMonitoring(
             context = applicationContext,
             scope = serviceScope,
             onGameStatusChanged = { isPlaying, gameName ->
-                val notificationText = if (isPlaying && !gameName.isNullOrBlank()) {
-                    "🎮 Jugando en vivo: $gameName"
-                } else {
-                    "Monitoreando tiempo de juego..."
-                }
-                updateNotification(notificationText)
+                // Background tracking active without intrusive notifications
             }
         )
     }
@@ -88,72 +81,5 @@ class GameTrackerService : Service() {
         Log.d(TAG, "GameTrackerService detenido.")
         AutomaticGameTracker.stopMonitoring()
         serviceScope.cancel()
-    }
-
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                CHANNEL_ID,
-                "Rastreador de Horas de Juego",
-                NotificationManager.IMPORTANCE_LOW
-            ).apply {
-                description = "Monitorea en segundo plano el tiempo jugado para el ranking de Miku Hub"
-                setShowBadge(false)
-            }
-            val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            nm.createNotificationChannel(channel)
-        }
-    }
-
-    private fun buildNotification(text: String): Notification {
-        val openIntent = Intent(this, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
-        }
-        val pendingIntent = PendingIntent.getActivity(
-            this,
-            0,
-            openIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-
-        return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Miku Hub - Game Tracker")
-            .setContentText(text)
-            .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentIntent(pendingIntent)
-            .setOngoing(true)
-            .setPriority(NotificationCompat.PRIORITY_LOW)
-            .setCategory(NotificationCompat.CATEGORY_SERVICE)
-            .build()
-    }
-
-    private fun startForegroundWithNotification(text: String) {
-        val notification = buildNotification(text)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                startForeground(
-                    NOTIFICATION_ID,
-                    notification,
-                    ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE
-                )
-            } else {
-                startForeground(
-                    NOTIFICATION_ID,
-                    notification,
-                    ServiceInfo.FOREGROUND_SERVICE_TYPE_NONE
-                )
-            }
-        } else {
-            startForeground(NOTIFICATION_ID, notification)
-        }
-    }
-
-    private fun updateNotification(text: String) {
-        try {
-            val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            nm.notify(NOTIFICATION_ID, buildNotification(text))
-        } catch (e: Exception) {
-            Log.w(TAG, "Error actualizando notificación: ${e.message}")
-        }
     }
 }
