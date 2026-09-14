@@ -196,7 +196,6 @@ fun GamingSidebarLayout(
     var isPingTurboOn by remember { mutableStateOf(false) }
     var isTouchShieldOn by remember { mutableStateOf(false) }
     var isCrosshairOn by remember { mutableStateOf(false) }
-    var isBypassChargeOn by remember { mutableStateOf(GamingActionsHelper.isBypassChargingEnabled()) }
 
     var isRamInMbMode by remember { mutableStateOf(false) }
     var showBatteryTempInHeader by remember { mutableStateOf(true) }
@@ -333,7 +332,7 @@ fun GamingSidebarLayout(
             )
         }
 
-        // Collapsed trigger handle - only render when overlay window is actually collapsed to avoid jumping
+        // Collapsed trigger handle - dynamic Monet colored trigger matching system theme
         if (!isExpanded && !isWindowFullyExpanded && !showCrosshairSettings) {
             Box(
                 modifier = Modifier.fillMaxSize(),
@@ -350,9 +349,9 @@ fun GamingSidebarLayout(
                         .background(
                             Brush.verticalGradient(
                                 listOf(
-                                    Color(0xFF76FF03).copy(alpha = 0.95f),
-                                    Color(0xFF00E676).copy(alpha = 0.85f),
-                                    Color(0xFF76FF03).copy(alpha = 0.95f)
+                                    primary.copy(alpha = 0.95f),
+                                    primaryContainer.copy(alpha = 0.85f),
+                                    primary.copy(alpha = 0.95f)
                                 )
                             )
                         )
@@ -716,7 +715,7 @@ fun GamingSidebarLayout(
                                         modifier = Modifier.fillMaxWidth(),
                                         verticalArrangement = Arrangement.spacedBy(if (isLandscape) 6.dp else 10.dp)
                                     ) {
-                                        // Tachometers Row: 3 medidores circulares independientes (CPU, GPU y RAM)
+                                        // Tachometers Row: 3 medidores circulares independientes (CPU %, GPU % y RAM %)
                                         Row(
                                             modifier = Modifier.fillMaxWidth(),
                                             horizontalArrangement = Arrangement.SpaceEvenly,
@@ -726,24 +725,24 @@ fun GamingSidebarLayout(
                                                 title = "CPU",
                                                 percentage = cpuPercent,
                                                 badgeText = "${cpuTemp}°C",
-                                                badgeColor = Color(0xFFFFB74D), // naranja #FFA726
-                                                glowColor = Color(0xFFFF80AB),
+                                                badgeColor = tertiary,
+                                                glowColor = primary,
                                                 isLandscape = isLandscape
                                             )
                                             CircularMetricCard(
                                                 title = "GPU",
                                                 percentage = gpuPercent,
                                                 badgeText = "${gpuTemp}°C",
-                                                badgeColor = Color(0xFFFFB74D), // naranja #FFA726
-                                                glowColor = Color(0xFFFF80AB),
+                                                badgeColor = secondary,
+                                                glowColor = primary,
                                                 isLandscape = isLandscape
                                             )
                                             CircularMetricCard(
                                                 title = "RAM",
                                                 percentage = ramPercent,
                                                 badgeText = if (ramUsedMb >= 1024) String.format(java.util.Locale.US, "%.1f GB", ramUsedMb / 1024f) else "${ramUsedMb} MB",
-                                                badgeColor = Color(0xFF00E676), // verde #00E676
-                                                glowColor = Color(0xFFFF80AB),
+                                                badgeColor = primary,
+                                                glowColor = primary,
                                                 isLandscape = isLandscape
                                             )
                                         }
@@ -1003,6 +1002,17 @@ fun GamingSidebarLayout(
                                                 modifier = Modifier.weight(1f)
                                             )
                                             HighBoostActionTile(
+                                                icon = Icons.Rounded.NetworkCheck,
+                                                label = if (isPingTurboOn) stringResource(R.string.action_ping_turbo_on) else stringResource(R.string.action_ping_turbo_off),
+                                                isActive = isPingTurboOn,
+                                                onClick = {
+                                                    scope.launch {
+                                                        isPingTurboOn = GamingActionsHelper.toggleLowLatency(context)
+                                                    }
+                                                },
+                                                modifier = Modifier.weight(1f)
+                                            )
+                                            HighBoostActionTile(
                                                 icon = Icons.Rounded.NightlightRound,
                                                 label = if (isAfkOn) stringResource(R.string.action_afk_on) else stringResource(R.string.action_afk_off),
                                                 isActive = isAfkOn,
@@ -1010,17 +1020,6 @@ fun GamingSidebarLayout(
                                                     scope.launch {
                                                         onExpandedChanged(false)
                                                         isAfkOn = GamingActionsHelper.toggleAfkMode(context)
-                                                    }
-                                                },
-                                                modifier = Modifier.weight(1f)
-                                            )
-                                            HighBoostActionTile(
-                                                icon = Icons.Rounded.Power,
-                                                label = if (isBypassChargeOn) stringResource(R.string.action_bypass_charging_on) else stringResource(R.string.action_bypass_charging_off),
-                                                isActive = isBypassChargeOn,
-                                                onClick = {
-                                                    scope.launch {
-                                                        isBypassChargeOn = GamingActionsHelper.toggleBypassCharging(context)
                                                     }
                                                 },
                                                 modifier = Modifier.weight(1f)

@@ -78,6 +78,8 @@
     <string name="action_cleaning_ram">Freeing...</string>
     <string name="action_ping_turbo_active">Ping Turbo\n%1$dms</string>
     <string name="action_ping_turbo_normal">Ping Turbo\nNormal</string>
+    <string name="action_ping_turbo_on">Ping Turbo\nOn</string>
+    <string name="action_ping_turbo_off">Ping Turbo\nOff</string>
     <string name="action_hud_monitor">HUD Monitor</string>
     <string name="action_hud_visible">HUD Monitor\nVisible</string>
     <string name="action_hud_hidden">HUD Monitor\nHidden</string>

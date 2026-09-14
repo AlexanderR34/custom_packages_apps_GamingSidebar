@@ -1,19 +1,10 @@
 package com.miku.gamingsidebar.service
 
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ServiceInfo
-import android.os.Build
 import android.os.IBinder
 import android.util.Log
-import androidx.core.app.NotificationCompat
-import com.miku.gamingsidebar.MainActivity
-import com.miku.gamingsidebar.R
 import com.miku.gamingsidebar.data.backend.AutomaticGameTracker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,24 +12,17 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 
 /**
- * Foreground Service que mantiene el proceso de Miku Hub activo en segundo plano
- * y ejecuta el rastreo continuo de UsageStatsManager y Supabase Realtime Presence.
+ * Servicio en segundo plano para rastreo nativo de juegos sin notificaciones.
  */
 class GameTrackerService : Service() {
 
     companion object {
         private const val TAG = "GameTracker"
-        private const val NOTIFICATION_ID = 4001
-        private const val CHANNEL_ID = "miku_game_tracker_channel"
 
         fun start(context: Context) {
             try {
                 val intent = Intent(context, GameTrackerService::class.java)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    context.startForegroundService(intent)
-                } else {
-                    context.startService(intent)
-                }
+                context.startService(intent)
             } catch (e: Exception) {
                 Log.w(TAG, "No se pudo iniciar GameTrackerService: ${e.message}")
             }

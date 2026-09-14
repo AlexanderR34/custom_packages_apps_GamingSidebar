@@ -87,19 +87,58 @@ class GamingOverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner 
         }
     }
 
+    private var settingsObserver: android.database.ContentObserver? = null
+
+    private fun isSidebarMasterEnabled(): Boolean {
+        return try {
+            android.provider.Settings.System.getInt(
+                contentResolver,
+                com.miku.gamingsidebar.data.SettingsRepository.KEY_SYSTEM_SIDEBAR_ENABLED,
+                1
+            ) == 1
+        } catch (_: Exception) {
+            true
+        }
+    }
+
     override fun onCreate() {
         super.onCreate()
         activeInstance = this
         savedStateRegistryController.performRestore(null)
         lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
 
-        // System priv-app running with android.uid.system does not require ongoing notifications
         performanceMonitor = PerformanceMonitor(this).apply { startMonitoring() }
         setupOverlayWindow()
         loadGamePackagesAndStartMonitoring()
 
         serviceScope.launch(Dispatchers.IO) {
             MediaPlaybackHelper.ensureNotificationPermissions(this@GamingOverlayService)
+        }
+
+        // Register content observer for Settings -> Display -> Gaming Sidebar switch
+        settingsObserver = object : android.database.ContentObserver(android.os.Handler(android.os.Looper.getMainLooper())) {
+            override fun onChange(selfChange: Boolean) {
+                val enabled = isSidebarMasterEnabled()
+                if (!enabled) {
+                    isSidebarExpandedFlow.value = false
+                    updateOverlayExpanded(false)
+                    overlayView?.visibility = View.GONE
+                } else {
+                    val hasActiveGame = (pendingLaunchGamePackage != null || activeGamePackageFlow.value != null)
+                    if (hasActiveGame) {
+                        overlayView?.visibility = View.VISIBLE
+                    }
+                }
+            }
+        }
+        try {
+            contentResolver.registerContentObserver(
+                android.provider.Settings.System.getUriFor(com.miku.gamingsidebar.data.SettingsRepository.KEY_SYSTEM_SIDEBAR_ENABLED),
+                false,
+                settingsObserver!!
+            )
+        } catch (e: Exception) {
+            // Ignored
         }
 
         val screenFilter = IntentFilter().apply {
@@ -684,6 +723,12 @@ class GamingOverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner 
         foregroundMonitorJob?.cancel()
 
         try {
+            settingsObserver?.let { contentResolver.unregisterContentObserver(it) }
+        } catch (e: Exception) {
+            // Ignored
+        }
+
+        try {
             unregisterReceiver(screenStateReceiver)
         } catch (e: Exception) {
             // Ignored
@@ -703,12 +748,6 @@ class GamingOverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner 
             GamingActionsHelper.setPerformanceMode(this@GamingOverlayService, "balanced")
         }
         HorizontalHudOverlay.setGameActive(false)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            stopForeground(STOP_FOREGROUND_REMOVE)
-        } else {
-            @Suppress("DEPRECATION")
-            stopForeground(true)
-        }
         lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
         performanceMonitor?.stopMonitoring()
         com.miku.gamingsidebar.data.backend.AutomaticGameTracker.onSidebarGameExited(applicationContext)
@@ -742,10 +781,10 @@ class GamingOverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner 
                     putExtra(EXTRA_TARGET_PACKAGE, targetPackage)
                 }
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                context.startForegroundService(intent)
-            } else {
+            try {
                 context.startService(intent)
+            } catch (e: Exception) {
+                // Ignored
             }
             if (targetPackage != null) {
                 activeInstance?.setPendingGameLaunch(targetPackage)

@@ -51,7 +51,6 @@ class MikuNotificationListenerService : NotificationListenerService() {
 
     override fun onNotificationPosted(sbn: StatusBarNotification?) {
         super.onNotificationPosted(sbn)
-        MediaPlaybackHelper.updateFromNotificationListener(this)
         inspectMediaNotification(sbn)
     }
 
@@ -60,7 +59,6 @@ class MikuNotificationListenerService : NotificationListenerService() {
         sbn?.packageName?.let { pkg ->
             MediaPlaybackHelper.onMediaNotificationRemoved(pkg)
         }
-        MediaPlaybackHelper.updateFromNotificationListener(this)
     }
 
     private fun inspectMediaNotification(sbn: StatusBarNotification?) {
@@ -68,18 +66,7 @@ class MikuNotificationListenerService : NotificationListenerService() {
         val notif = sbn.notification ?: return
         val extras = notif.extras ?: return
 
-        // 1. Strictly ignore messaging, chat, social, and system notifications
-        val pkg = sbn.packageName.lowercase()
-        if (pkg.contains("whatsapp") || pkg.contains("orca") || pkg.contains("messenger") ||
-            pkg.contains("telegram") || pkg.contains("discord") || pkg.contains("facebook") ||
-            pkg.contains("instagram") || pkg.contains("twitter") || pkg.contains("x.android") ||
-            pkg.contains("gmail") || pkg.contains("systemui") || pkg.contains("android.dialer") ||
-            pkg.contains("google.android.apps.messaging")
-        ) {
-            return
-        }
-
-        // 2. Extract MediaSession.Token directly if present
+        // Extract MediaSession.Token directly - only listen to media controllers
         val token: android.media.session.MediaSession.Token? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             extras.getParcelable(Notification.EXTRA_MEDIA_SESSION, android.media.session.MediaSession.Token::class.java)
                 ?: extras.getParcelable("android.mediaSession", android.media.session.MediaSession.Token::class.java)
@@ -97,7 +84,7 @@ class MikuNotificationListenerService : NotificationListenerService() {
             } catch (_: Exception) {}
         }
 
-        // 3. Fallback: verify that this notification is actually a media or transport notification
+        // Only accept explicitly categorized media/transport notifications
         val isMedia = notif.category == Notification.CATEGORY_TRANSPORT ||
                 extras.containsKey(Notification.EXTRA_MEDIA_SESSION) ||
                 extras.containsKey("android.mediaSession") ||

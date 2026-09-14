@@ -420,18 +420,6 @@ fun GamingSettingsScreen(
                             subtitle = "Ajusta tamaño, forma y color de la retícula en pantalla",
                             onClick = { showCrosshairSettings = true }
                         )
-
-                        // Bypass charging status indicator
-                        ExpressiveActionRow(
-                            icon = Icons.Rounded.Power,
-                            title = "Carga Bypass de Batería",
-                            subtitle = "Alimentación directa por cable para reducir calor al jugar",
-                            onClick = {
-                                scope.launch {
-                                    GamingActionsHelper.toggleBypassCharging(context)
-                                }
-                            }
-                        )
                     }
                 }
             }
